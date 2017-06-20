@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+.nametd{min-width: 30px;}
+#content{padding-left:50px;padding-right:50px;}
+#content h2{font-size:18px;color:#1E9300;padding-top:8px;margin-bottom:8px;}
+#content h3{margin-top:8px;margin-bottom:8px;FONT:bold 14px 宋体,tahoma,arial,sans-serif;COLOR:#0033CC;}
+#content div{margin-top:10px;margin-bottom:10px;border:#666 solid 1px;padding:10px;}
+#content span{color:#f00;font-weight:bold;}ul,ol{color:#000000;}
+ 

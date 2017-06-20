@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>XSEShop3</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+     <!-- 配置strut -->
+  <filter>
+    <filter-name>struts2</filter-name>
+    <filter-class>
+            org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
+        </filter-class>
+    <init-param>
+      <param-name>struts.action.extendion</param-name>
+      <param-value>action</param-value>
+       
+      <!-- 配置struts默认路径 -->
+    </init-param>
+     <init-param> 
+      <param-name>config</param-name>
+      <param-value> struts-default.xml,struts-plugin.xml,../struts.xml</param-value>  
+     </init-param>  
+  </filter>
+  
+  <filter-mapping>
+    <filter-name>struts2</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <listener>
+     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <context-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>classpath:applicationContext.xml,classpath:applicationContext_beans.xml</param-value>
+  </context-param>
+  <!-- 防止内存泄露 -->
+  <listener>
+        <listener-class>
+            org.springframework.web.util.IntrospectorCleanupListener
+        </listener-class>
+    </listener>
+	<!--过滤器 -->
+	<!-- 收藏商品管理 -->
+	<filter>
+	 <display-name>AddLikeGoodFilter</display-name>
+	 <filter-name>AddLikeGoodFilter</filter-name>
+	 <filter-class>com.dsc.filter.AddLikeGoodFilter</filter-class>
+	 </filter>
+	<filter-mapping>
+	<filter-name>AddLikeGoodFilter</filter-name>
+	<url-pattern>/AddLikeGood</url-pattern>
+	</filter-mapping>
+	  <!-- 后台商品管理 -->
+	<filter>
+	 <display-name>GoodAdminFilter</display-name>
+	 <filter-name>GoodAdminFilter</filter-name>
+	 <filter-class>com.dsc.filter.GoodAdmin</filter-class>
+	 </filter>
+	<filter-mapping>
+	<filter-name>GoodAdminFilter</filter-name>
+	<url-pattern>/admin/adminGoodCl.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>GoodAdminFilter</filter-name>
+	<url-pattern>/admin/adminAddGood.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>GoodAdminFilter</filter-name>
+	<url-pattern>/admin/adminAddCategory.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>GoodAdminFilter</filter-name>
+	<url-pattern>/admin/adminCategoryCl.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>GoodAdminFilter</filter-name>
+	<url-pattern>/admin/adminUpdateCategory.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>GoodAdminFilter</filter-name>
+	<url-pattern>/admin/adminUpdateGood.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>GoodAdminFilter</filter-name>
+	<url-pattern>/GoodAdmin</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>GoodAdminFilter</filter-name>
+	<url-pattern>/admin/UpdateGood</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>GoodAdminFilter</filter-name>
+	<url-pattern>/admin/AdminAddGood</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>GoodAdminFilter</filter-name>
+	<url-pattern>/admin/AdminDelGood</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>GoodAdminFilter</filter-name>
+	<url-pattern>/admin/AdminGoodCl</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>GoodAdminFilter</filter-name>
+	<url-pattern>/admin/AdminAddCategoryCl</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>GoodAdminFilter</filter-name>
+	<url-pattern>/admin/AdminAddCategory</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>GoodAdminFilter</filter-name>
+	<url-pattern>/admin/AdminDelCategory</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>GoodAdminFilter</filter-name>
+	<url-pattern>/admin/UpdateCategory</url-pattern>
+	</filter-mapping>
+	
+	<!-- 后台会员管理 -->
+	<filter>
+	 <display-name>CustomerAdminFilter</display-name>
+	 <filter-name>CustomerAdminFilter</filter-name>
+	 <filter-class>com.dsc.filter.CustomerAdmin</filter-class>
+	 </filter>
+	<filter-mapping>
+	<filter-name>CustomerAdminFilter</filter-name>
+	<url-pattern>/admin/adminCustomerCl.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>CustomerAdminFilter</filter-name>
+	<url-pattern>/admin/AdminCustomerCl</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>CustomerAdminFilter</filter-name>
+	<url-pattern>/admin/AdminDelCustomer</url-pattern>
+	</filter-mapping>
+	
+	
+	<!-- 后台订单管理 -->
+	<filter>
+	 <display-name>OrdersAdminFilter</display-name>
+	 <filter-name>OrdersAdminFilter</filter-name>
+	 <filter-class>com.dsc.filter.OrdersAdmin</filter-class>
+	 </filter>
+	<filter-mapping>
+	<filter-name>OrdersAdminFilter</filter-name>
+	<url-pattern>/admin/adminOrdersCl.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>OrdersAdminFilter</filter-name>
+	<url-pattern>/AdminShowOrders</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>OrdersAdminFilter</filter-name>
+	<url-pattern>/admin/AdminShowOrders</url-pattern>
+	</filter-mapping>
+	<!-- 前台会员管理 -->
+	 <filter>
+	 <display-name>CuotemerLoginFilter</display-name>
+	 <filter-name>CuotemerLoginFilter</filter-name>
+	 <filter-class>com.dsc.filter.CuotemerLoginFilter</filter-class>
+	 </filter>
+	<filter-mapping>
+	<filter-name>CuotemerLoginFilter</filter-name>
+	<url-pattern>/customer.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>CuotemerLoginFilter</filter-name>
+	<url-pattern>/customerCl.jsp</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+	<filter-name>CuotemerLoginFilter</filter-name>
+	<url-pattern>/customerLike.jsp</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+	<filter-name>CuotemerLoginFilter</filter-name>
+	<url-pattern>/addCartAndOrder.jsp</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+	<filter-name>CuotemerLoginFilter</filter-name>
+	<url-pattern>/customerOrders.jsp</url-pattern>
+	</filter-mapping>
+	
+	<!-- 后台管理员管理 -->
+	<filter>
+	 <display-name>SystemAdminFilter</display-name>
+	 <filter-name>SystemAdminFilter</filter-name>
+	 <filter-class>com.dsc.filter.SystemAdmin</filter-class>
+	 </filter>
+	<filter-mapping>
+	<filter-name>SystemAdminFilter</filter-name>
+	<url-pattern>/admin/adminSystemCl.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>SystemAdminFilter</filter-name>
+	<url-pattern>/admin/adminUpdateAdministrator.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>SystemAdminFilter</filter-name>
+	<url-pattern>/admin/adminAddAdministrators.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>SystemAdminFilter</filter-name>
+	<url-pattern>/admin/AdminAddSystem</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>SystemAdminFilter</filter-name>
+	<url-pattern>/admin/AdminSystemCl</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>SystemAdminFilter</filter-name>
+	<url-pattern>/admin/AdminDelAdministrator</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>SystemAdminFilter</filter-name>
+	<url-pattern>/admin/UpdateAdministrator</url-pattern>
+	</filter-mapping>
+	<!-- 后台登录管理 -->
+	 <filter>
+	 <display-name>AdminLoginFilter</display-name>
+	 <filter-name>AdminLoginFilter</filter-name>
+	 <filter-class>com.dsc.filter.AdminLogin</filter-class>
+	 </filter>
+	 
+	 <filter-mapping>
+	<filter-name>AdminLoginFilter</filter-name>
+	<url-pattern>/admin/permissionerror.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>AdminLoginFilter</filter-name>
+	<url-pattern>/admin/adminuse.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>AdminLoginFilter</filter-name>
+	<url-pattern>/admin/adminleft.jsp</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+	<filter-name>AdminLoginFilter</filter-name>
+	<url-pattern>/admin/adminAddCateGory.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>AdminLoginFilter</filter-name>
+	<url-pattern>/admin/adminAddGood.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>AdminLoginFilter</filter-name>
+	<url-pattern>/admin/adminAddCateGoryCl.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>AdminLoginFilter</filter-name>
+	<url-pattern>/admin/adminGoodCl.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>AdminLoginFilter</filter-name>
+	<url-pattern>/admin/adminSystemCl.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>AdminLoginFilter</filter-name>
+	<url-pattern>/admin/adminUpdateAdministrator.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>AdminLoginFilter</filter-name>
+	<url-pattern>/admin/adminUpdateCateGory.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>AdminLoginFilter</filter-name>
+	<url-pattern>/admin/adminUpdateGood.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>AdminLoginFilter</filter-name>
+	<url-pattern>/admin/operaterror.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>AdminLoginFilter</filter-name>
+	<url-pattern>/admin/operatesuccess.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	<filter-name>AdminLoginFilter</filter-name>
+	<url-pattern>/admin/adminAddCateGory.jsp</url-pattern>
+	</filter-mapping>
+  
+</web-app>

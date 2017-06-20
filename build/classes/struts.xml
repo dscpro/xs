@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+ 
+
+<constant name="struts.i18n.encoding" value="UTF-8"/>
+<constant name="struts.objectFactory" value="spring" />
+<constant name="struts.devMode" value="true"/>
+    <package name="Pkg" namespace="/"   extends="struts-default">
+   
+    <action name="test_*" class="TestAction" method="{1}">
+        	
+        	<result name="osucess">/operatesuccess.jsp</result>        	
+        	<result name="oerror">/operaterror.jsp</result>
+        	<result name="findsucess">/tt.jsp</result>        	
+        	<result name="finderror">/finderror.jsp</result>
+        	            
+        </action>
+        
+          <action name="randomCode" class="com.dsc.action.Draw"/>   
+        
+     </package>
+     <include file="res/struts-cu.xml"/>
+     <include file="res/struts-admin.xml"/>
+</struts>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
+				 default-lazy-init="true" 
+				>
+
+<!-- 配置DAO -->
+<bean id="adminServiceImlDAO" class="com.dsc.DAO.AdminServiceImlDAO">
+<property name="hibernateUtil" ref="hibernateUtil"/>
+</bean>
+<bean id="adminTypeServiceImlDAO" class="com.dsc.DAO.AdminTypeServiceImlDAO">
+<property name="hibernateUtil" ref="hibernateUtil"/>
+</bean>
+<bean id="cartServiceImlDAO" class="com.dsc.DAO.CartServiceImlDAO">
+<property name="hibernateUtil" ref="hibernateUtil"/>
+</bean>
+<bean id="categoryServiceImlDAO" class="com.dsc.DAO.CategoryServiceImlDAO">
+<property name="hibernateUtil" ref="hibernateUtil"/>
+</bean>
+<bean id="customerServiceImlDAO" class="com.dsc.DAO.CustomerServiceImlDAO">
+<property name="hibernateUtil" ref="hibernateUtil"/>
+</bean>
+<bean id="goodLikeServiceImlDAO" class="com.dsc.DAO.GoodLikeServiceImlDAO">
+<property name="hibernateUtil" ref="hibernateUtil"/>
+</bean>
+<bean id="goodServiceImlDAO" class="com.dsc.DAO.GoodServiceImlDAO">
+<property name="hibernateUtil" ref="hibernateUtil"/>
+</bean>
+<bean id="ordersServiceImlDAO" class="com.dsc.DAO.OrdersServiceImlDAO">
+<property name="hibernateUtil" ref="hibernateUtil"/>
+</bean>
+<bean id="ordersServiceStatusImlDAO" class="com.dsc.DAO.OrdersServiceStatusImlDAO">
+<property name="hibernateUtil" ref="hibernateUtil"/>
+</bean>
+<!-- 配置service -->
+
+<bean id="adminServiceIml" class="com.dsc.service.AdminServiceIml">
+<property name="adminServiceImlDAO" ref="adminServiceImlDAO"/>
+</bean>
+<bean id="adminTypeServiceIml" class="com.dsc.service.AdminTypeServiceIml">
+<property name="adminTypeServiceImlDAO" ref="adminTypeServiceImlDAO"/>
+</bean>
+<bean id="cartServiceIml" class="com.dsc.service.CartServiceIml">
+<property name="cartServiceImlDAO" ref="cartServiceImlDAO"/>
+</bean>
+<bean id="categoryServiceIml" class="com.dsc.service.CategoryServiceIml">
+<property name="categoryServiceImlDAO" ref="categoryServiceImlDAO"/>
+</bean>
+<bean id="customerServiceIml" class="com.dsc.service.CustomerServiceIml">
+<property name="customerServiceImlDAO" ref="customerServiceImlDAO"/>
+</bean>
+<bean id="goodLikeServiceIml" class="com.dsc.service.GoodLikeServiceIml">
+<property name="goodLikeServiceImlDAO" ref="goodLikeServiceImlDAO"/>
+</bean>
+<bean id="goodServiceIml" class="com.dsc.service.GoodServiceIml">
+<property name="goodServiceImlDAO" ref="goodServiceImlDAO"/>
+</bean>
+<bean id="ordersServiceIml" class="com.dsc.service.OrdersServiceIml">
+<property name="ordersServiceImlDAO" ref="ordersServiceImlDAO"/>
+</bean>
+<bean id="ordersServiceStatusIml" class="com.dsc.service.OrdersServiceStatusIml">
+<property name="ordersServiceStatusImlDAO" ref="ordersServiceStatusImlDAO"/>
+</bean>
+
+<!-- 配置action -->
+<bean name="AdminAction" class="com.dsc.action.AdminAction">
+<property name="adminServiceIml" ref="adminServiceIml"/>
+<property name="adminTypeServiceIml" ref="adminTypeServiceIml"/>
+</bean>
+<bean name="AdminTypeAction" class="com.dsc.action.AdminTypeAction">
+<property name="adminTypeServiceIml" ref="adminTypeServiceIml"/>
+</bean>
+<bean name="CartAction" class="com.dsc.action.CartAction">
+<property name="cartServiceIml" ref="cartServiceIml"/>
+</bean>
+<bean name="CategoryAction" class="com.dsc.action.CategoryAction">
+<property name="categoryServiceIml" ref="categoryServiceIml"/>
+</bean>
+<bean name="CustomerAction" class="com.dsc.action.CustomerAction">
+<property name="customerServiceIml" ref="customerServiceIml"/>
+</bean>
+<bean name="GoodAction" class="com.dsc.action.GoodAction">
+<property name="goodServiceIml" ref="goodServiceIml"/>
+<property name="categoryServiceIml" ref="categoryServiceIml"/>
+</bean>
+<bean name="GoodLikeAction" class="com.dsc.action.GoodLikeAction">
+<property name="goodLikeServiceIml" ref="goodLikeServiceIml"/>
+</bean>
+<bean name="OrdersAction" class="com.dsc.action.OrdersAction">
+<property name="ordersServiceIml" ref="ordersServiceIml"/>
+</bean>
+
+</beans>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dsc.domain">
+<class name="Category" table="category" >
+<id name="id" type="java.lang.Integer">
+<generator class="sequence">
+<param name="sequence">category_seq</param>
+</generator>
+</id>
+<property name="cateName" type="java.lang.String">
+<column name="cateName" />
+</property>
+<set name="listgood" cascade="save-update" lazy="true">
+<key column="cate_id"/>
+<one-to-many class="com.dsc.domain.Good"/>
+</set>
+</class>
+</hibernate-mapping>

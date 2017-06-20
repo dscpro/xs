@@ -1,0 +1,37 @@
+ body
+   {
+    background:url(8.jpg);
+    background-repeat:repeat;
+   }
+   #div_a
+   {
+    width:250px;
+    height:150px;
+    border-style:solid;
+    border-width:5px;
+    border-color:orange;
+	
+
+   }
+   #div_b
+   {
+    position:absolute;
+    margin-left:400px;
+   }
+   #div
+   {
+    cursor:pointer;
+	text-align:right;
+	background-color:#cecece;
+   }
+
+   #div>a:link,#div>a:visited
+   {
+    color:#000000;
+   text-decoration:none;
+   }
+   #div>a:hover,#div>a:active
+   {
+    color:#3333ff;
+    text-decoration:none;
+   }

@@ -1,0 +1,5 @@
+@CHARSET "UTF-8";
+.tdname{min-width:260px ;display: block;}
+.div_middle{min-height: 180px}
+#img:HOVER{width:350px;height: 350px;z-index: 999;position: absolute;top:50px;}
+td{min-height: 36px;}

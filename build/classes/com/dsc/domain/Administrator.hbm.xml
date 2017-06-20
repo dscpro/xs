@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dsc.domain">
+<class name="Administrator" table="administrator" >
+<id name="id" type="java.lang.Integer">
+<generator class="sequence">
+<param name="sequence">admin_seq</param>
+</generator>
+</id>
+
+<property name="name" type="java.lang.String">
+<column name="name" length="64"/>
+</property>
+<property name="loginName" type="java.lang.String">
+<column name="loginName" length="64"/>
+</property>
+<property name="loginPwd" type="java.lang.String">
+<column name="loginPwd" length="64"/>
+</property>
+<many-to-one name="adminType" column="admin_id" lazy="false"/>
+</class>
+</hibernate-mapping>

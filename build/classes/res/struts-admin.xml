@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+ 
+  <package name="Pkg" namespace="/"   extends="struts-default">
+   <interceptors>
+      <!-- 自定义拦截器 -->
+      
+       <interceptor name="adminpermission" class="com.dsc.interceptor.AdminLoginInterceptor" >
+       <param name="excludeMethods">login,exitLogin</param>  
+       </interceptor>
+       <interceptor name="adminSys" class="com.dsc.interceptor.SysIntercepter" >
+       <param name="excludeMethods">login,exitLogin,save,del,updateObject,findoneadmin</param>  
+       </interceptor>
+     
+      <!-- 配制默许的拦截器到拦截器栈 -->
+      <!-- HOUTAI -->
+       <interceptor-stack name="adminpermissionStack">
+      <!-- 此处先后顺序好像没影响哦，我尝试过是没影响的 -->
+       <interceptor-ref name="adminpermission" />          
+      <interceptor-ref name="defaultStack" />
+      </interceptor-stack>
+      <!-- HOUTAIADMIN -->
+       <interceptor-stack name="adminStack">
+      <!-- 此处先后顺序好像没影响哦，我尝试过是没影响的 -->
+        <interceptor-ref name="adminSys"/> 
+      <interceptor-ref name="defaultStack" />
+      </interceptor-stack>
+       
+     </interceptors>
+ <action name="admin_*" class="AdminAction" method="{1}">
+            <interceptor-ref name="adminStack" />   
+        	<result name="adminloginsucess" type="redirect">/admin/adminuse.jsp</result>        	
+        	<result name="adminloginerror" >/admin/adminloginerror.jsp</result>
+        	<result name="adminloginpwd">/admin/finderror.jsp</result>        	
+        	<result name="osucess" type="redirect">/admin/operatesuccess.jsp</result>        	
+        	<result name="oerror" type="redirect">/admin/operaterror.jsp</result>
+        	<result name="findsucess">/admin/adminSystemCl.jsp</result>        	
+        	<result name="finderror">/finderror.jsp</result>
+        	<result name="exitsucess" type="redirect">/admin/admin.jsp</result>  
+        	<result name="findsuc">/admin/adminUpdateAdministrator.jsp</result>
+        	<result name="findadminerror">/admin/finderror.jsp</result>
+        	<result name="adminClerror">/admin/permissionerror.jsp</result>
+        </action>
+        
+          <action name="admintype_*" class="AdminTypeAction" method="{1}">
+        	<result name="adminloginerror" type="">/admin/adminloginerror.jsp</result>
+        	<result name="osucess" type="redirect">/operatesuccess.jsp</result>        	
+        	<result name="oerror" type="redirect">/operaterror.jsp</result>
+        	<result name="findsucess">/tt.jsp</result>        	
+        	<result name="adminloginerror" type="">/admin/adminloginerror.jsp</result>
+            <result name="adminClerror">/admin/permissionerror.jsp</result>
+        	<interceptor-ref name="adminpermissionStack" />        	            
+        </action>
+       
+        <action name="admincustomer_*" class="CustomerAction" method="{1}">
+        
+        	
+        	<result name="findsucess">/admin/adminCustomerCl.jsp</result>        	
+        	<result name="finderror">/admin/finderror.jsp</result>
+        	<result name="adminClerror">/admin/permissionerror.jsp</result>
+        	<result name="adminosucess" type="redirect">/admin/operatesuccess.jsp</result>        	
+        	<result name="adminoerror" type="redirect">/admin/operaterror.jsp</result>
+            <result name="adminloginerror" type="">/admin/adminloginerror.jsp</result>
+        	<interceptor-ref name="adminpermissionStack" />  
+        </action>
+        <action name="admingood_*" class="GoodAction" method="{1}">
+           
+        	<result name="osucess"  type="redirect">/admin/operatesuccess.jsp</result>        	
+        	<result name="oerror" type="redirect">/admin/operaterror.jsp</result>
+        	<result name="adminClerror">/admin/permissionerror.jsp</result>     	
+        	<result name="adminfindsucess">/admin/adminGoodCl.jsp</result>   
+        	<result name="adminloadgoodsucess">/admin/adminUpdateGood.jsp</result>           	
+            <result name="adminloginerror" type="">/admin/adminloginerror.jsp</result>
+            <param name="uploadDir">/uploadsFiles</param>
+        	<interceptor-ref name="adminpermissionStack" />         
+        </action>
+        <action name="admingoodlike_*" class="GoodLikeAction" method="{1}">
+        
+        	<result name="adminClerror">/admin/permissionerror.jsp</result>
+        	<result name="adminloginerror" type="">/admin/adminloginerror.jsp</result>
+        	<interceptor-ref name="adminpermissionStack" />         
+        </action>
+        <action name="admincate_*" class="CategoryAction" method="{1}">
+         <result name="adminClerror">/admin/permissionerror.jsp</result>
+        	<result name="osucess" type="redirect">/admin/operatesuccess.jsp</result>        	
+        	<result name="oerror" type="redirect">/admin/operaterror.jsp</result>
+        	<result name="adminfindsucess">/admin/adminAddGood.jsp</result>      
+        	<result name="findsucess">/admin/adminCategoryCl.jsp</result>          	
+        	
+        	 <result name="adminloginerror" >/admin/adminloginerror.jsp</result>
+        	<interceptor-ref name="adminpermissionStack" />             
+        </action>
+         <action name="admincart_*" class="CartAction" method="{1}">
+             <result name="adminClerror">/admin/permissionerror.jsp</result>
+        	<result name="adminloginerror" type="">/admin/adminloginerror.jsp</result>
+        	<interceptor-ref name="adminpermissionStack" />  
+        </action>
+       
+        <action name="adminorders_*" class="OrdersAction" method="{1}">
+           <result name="adminClerror">/admin/permissionerror.jsp</result>
+        	<result name="osucess" type="redirect">/admin/operatesuccess.jsp</result>        	
+        	<result name="oerror" type="redirect">/admin/operaterror.jsp</result>
+        	<result name="adminfindsucess">/admin/adminOrders.jsp</result>    
+        	<result name="adminupdatesucess">/admin/operatesuccess.jsp</result>    
+        	
+        	<result name="adminloginerror" type="">/admin/adminloginerror.jsp</result>
+        	<interceptor-ref name="adminpermissionStack" />  
+        	
+        </action>
+   </package>   
+</struts>   

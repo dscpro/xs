@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+  <package name="Pkg" namespace="/"   extends="struts-default">
+   <interceptors>
+      <!-- 自定义拦截器 -->
+       <interceptor name="permission" class="com.dsc.interceptor.CustomerLoginInterceptor">
+       <param name="excludeMethods">loginPre</param>  
+       </interceptor>
+
+      <!-- 配制默许的拦截器到拦截器栈 -->
+      <!-- qiantai  -->
+      <interceptor-stack name="permissionStack">     
+      <interceptor-ref name="permission" />
+      <interceptor-ref name="defaultStack" />
+      </interceptor-stack>
+     </interceptors>
+ <action name="customer_*" class="CustomerAction" method="{1}">
+        
+        	<result name="loginsucess" type="redirect">/index.jsp</result>   
+        	<result name="loginsucessgood" type="redirect">/showCarGoods.jsp</result>      	
+        	<result name="loginerror">/loginerror.jsp</result>
+        	<result name="exitsucess" type="redirect">/index.jsp</result>
+        	<result name="osucess" type="redirect">/operatesuccess.jsp</result>        	
+        	<result name="oerror" type="redirect">/operaterror.jsp</result>
+        	<result name="findsucess">/admin/adminCustomerCl.jsp</result>        	
+        	<result name="finderror">/admin/finderror.jsp</result>
+        	<result name="presucess" type="redirect">/login.jsp</result>   
+        	<result name="adminosucess">/admin/operatesuccess.jsp</result>        	
+        	<result name="adminoerror">/admin/operaterror.jsp</result>
+        	<interceptor-ref name="permissionStack" />
+        </action>
+        <action name="good_*" class="GoodAction" method="{1}">
+            <result name="addsucess">/showOneGood.jsp</result>          
+        	<result name="loginsucess" type="redirect">/index.jsp</result>        	
+        	<result name="osucess"  type="redirect">/admin/operatesuccess.jsp</result>        	
+        	<result name="oerror" type="redirect">/admin/operaterror.jsp</result>
+        	<result name="findsucess">/showOneGood.jsp</result>        	
+        	<result name="adminfindsucess">/admin/adminGoodCl.jsp</result>   
+        	<result name="adminloadgoodsucess">/admin/adminUpdateGood.jsp</result> 
+        	<result name="finderror">/finderror.jsp</result>
+        	<param name="uploadDir">/uploadsFiles</param>      
+        </action>
+        <action name="goodlike_*" class="GoodLikeAction" method="{1}">
+         <interceptor-ref name="permissionStack" />  
+        	<result name="osucess" type="redirect">/operatesuccess.jsp</result>        	
+        	<result name="oerror" type="redirect">/operaterror.jsp</result>
+        	<result name="findsucess">/customerLike.jsp</result>        	
+        	<result name="finderror">/finderror.jsp</result>
+        	 <result name="loginerror">/customererror.jsp</result>        
+        </action>
+        <action name="cate_*" class="CategoryAction" method="{1}">
+         
+        	<result name="osucess" type="redirect">/admin/operatesuccess.jsp</result>        	
+        	<result name="oerror" type="redirect">/admin/operaterror.jsp</result>
+        	<result name="adminfindsucess">/admin/adminAddGood.jsp</result>      
+        	<result name="findsucess">/admin/adminCategoryCl.jsp</result>          	
+        	<result name="adminfinderror">/finderror.jsp</result>
+        	            
+        </action>
+         <action name="cart_*" class="CartAction" method="{1}">
+         
+        	<result name="osucess" type="redirect">/operatesuccess.jsp</result>        	
+        	<result name="oerror" type="redirect">/operaterror.jsp</result>
+        	<result name="findsucess">/tt.jsp</result>        	
+        	<result name="finderror">/finderror.jsp</result>
+        	<result name="addtocartsucess" type="redirect">/showCarGoods.jsp</result>        	
+        	<result name="addtocarterror">/operaterror.jsp</result>     
+        </action>
+       
+        <action name="orders_*" class="OrdersAction" method="{1}">
+            <interceptor-ref name="permissionStack" />  
+        	<result name="osucess" type="redirect">/admin/operatesuccess.jsp</result>        	
+        	<result name="oerror" type="redirect">/admin/operaterror.jsp</result>
+        	<result name="findsucess">/customerOrders.jsp</result>        	
+        	<result name="finderror">/finderror.jsp</result>
+        	<result name="adminfindsucess">/admin/adminOrders.jsp</result>    
+        	<result name="adminupdatesucess">/admin/operatesuccess.jsp</result>    
+        	<result name="loginerror">/customererror.jsp</result>
+        	
+        </action>
+         
+     </package>   
+</struts>        

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dsc.domain">
+<class name="GoodLike" table="goodLike" >
+<id name="id" type="java.lang.Integer">
+<generator class="sequence">
+<param name="sequence">goodLike_seq</param>
+</generator>
+</id>
+<many-to-one name="good" column="good_id" lazy="false"/>
+<many-to-one name="customer" column="cu_id" lazy="false"/>
+
+</class>
+</hibernate-mapping>

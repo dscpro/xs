@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dsc.domain">
+<class name="Cart" table="cart" >
+<id name="id" type="java.lang.Integer">
+<generator class="sequence">
+<param name="sequence">cart_seq</param>
+</generator>
+</id>
+<property name="numgood" type="java.lang.Integer">
+<column name="numgood" />
+</property>
+<many-to-one name="good" column="good_id" class="Good"/>
+<many-to-one name="order" column="order_id" class="Orders"/>
+</class>
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+#go-top
+{
+ background: url("http://assets.taobaocdn.com/app/tc/img/decorate.png") -100px -100px;
+ height: 80px;
+ width: 20px;
+ right: 20px;
+ position: absolute;
+ display: none;
+ z-index:9;
+}
+
+#go-top a
+{
+ display: block;
+ height: 80px;
+ width: 20px;
+}

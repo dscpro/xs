@@ -1,0 +1,4 @@
+@CHARSET "UTF-8";
+.top >a{margin-left: 80px;line-height: 100px;text-decoration: none;}
+.top >a:VISITED, .top >a:LINK{color:black;}
+.top >a:HOVER {color:#C81623;}
